@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LembreME - App muito Foda</title>
     <link rel="stylesheet" href="/styles/add_rotina.css">
+    <script type="module" src="/scripts/script.js"></script>
 </head>
 <body>
 
@@ -18,23 +19,17 @@
     </header>
 
     <main>
-        <section class="submit-rotina">
+        <form action="" class="submit-rotina">
             <div class="input-nome">
                 <h2>Nome da Rotina:</h2>
-                <input class="submit-text" value="">
+                <input class="submit-text" id="inputName" placeholder="Remédios de ..."> 
             </div>
             <div class="input-description">
                 <h2>Descrição:</h2>
-                <textarea class="submit-text" wrap="soft"></textarea>
+                <textarea class="submit-text" wrap="soft" id="inputDesc" placeholder="Rotina de remédios para..."></textarea>
             </div>
-        </section>
-
-        <section class="add-rotina">
-            <button type="submit">
-                <a href="/pages/search.html"><h3>Adicionar Rotina</h3></a>
-            </button>
-        </section>
-
+        </form>
+        <input type="submit" id="botao" value="Adicionar Remédios">
     </main>
     
 </body>

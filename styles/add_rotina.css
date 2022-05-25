@@ -55,12 +55,16 @@ main {
   border-bottom: solid #ffffff;
   font-size: 19px;
 }
+.submit-text::placeholder{
+  font-size: 15px;
+  color: #fff
+}
 .input-description textarea {
   height: 150px;
   font-size: 15px;
 }
 
-.add-rotina button {
+#botao {
   background-color: #0487ff;
   display: flex;
   flex-direction: row;
@@ -69,7 +73,7 @@ main {
 
   border: none;
 
-  margin: 0 auto;
+  margin: 20px auto;
 
   width: 250px;
   height: 60px;
@@ -78,4 +82,7 @@ main {
 
   font-size: 19px;
   cursor: pointer;
+}
+#botao:hover{
+  background-color: #065fb3;
 }

@@ -9,7 +9,13 @@
   </head>
 
   <body>
-    <header class="header">
+
+    <script type="module">
+      import {showRoutines} from "./scripts/database.js"
+      window.onload = showRoutines()
+    </script>
+
+    <header class="header">   
       <section id="header-content">
         <div>
           <img src="/assets/user_image.png" />

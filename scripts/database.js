@@ -1,37 +1,51 @@
-// Add rotinas sem o remédio ainda
-class Routine{
-    constructor(nomeRotina, descRotina){
-        this.nomeRotina = nomeRotina;
-        this.descRotina = descRotina;
-    }
-}
-const btn = document.querySelector("#botao");
-const nome = document.querySelector("#inputName");
-const desc = document.querySelector("#inputDesc");
-
-btn.addEventListener("click", function (){
-
-
-    const rout = new Routine(nome.value, desc.value)
-
-    if(nome.value === "" || desc.value === ""){
-        return alert("Escreva o nome da rotina e a descrição para continuarmos")
-    }
-
-    insertRoutine(nome.value, desc.value);  
-    window.location.href = "/pages/search.html"  
-})
-
 //banco de dados
-var db = openDatabase("dbApp", '1.0', "LocalDB",4*1024*1024);
-db.transaction(function(tx){
-    tx.executeSql("CREATE TABLE medicines (id INTEGER PRIMARY KEY, nome TEXT, desc TEXT)")
-})
+var db = openDatabase("dbApp", "1.0", "LocalDB", 4 * 1024 * 1024);
+db.transaction(function (tx) {
+  tx.executeSql(
+    "CREATE TABLE medicines (id INTEGER PRIMARY KEY, nome TEXT, desc TEXT)"
+  );
+});
 
-db.transaction(function(tx){
-    tx.executeSql("CREATE TABLE routines (id INTEGER PRIMARY KEY, nome TEXT, desc TEXT)")
-})
-function insertRoutine(nomeInput,descInput){
-db.transaction(function(tx){
-    tx.executeSql("INSERT INTO routines (nome, desc) VALUES(?,?)", [nomeInput,descInput])
-})}
+db.transaction(function (tx) {
+  tx.executeSql(
+    "CREATE TABLE routines (id INTEGER PRIMARY KEY, nome TEXT, desc TEXT)"
+  );
+});
+
+
+export function insertRoutine(nomeInput, descInput) {
+  db.transaction(function (tx) {
+    tx.executeSql("INSERT INTO routines (nome, desc) VALUES(?,?)", [
+      nomeInput,
+      descInput,
+    ]);
+  });
+}
+
+export function showRoutines() {
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT * FROM routines",
+      [],
+      function (tx, resultado) {
+        var rows = resultado.rows;
+        var div = "";
+        var rot = document.querySelector(".listas-rotina");
+
+        for (var i = 0; i < rows.length; i++) {
+          div += '<div>';
+          div += "<div class='remedio-specs'>";
+          div += '<img src="/assets/user_image.png" />';
+          div += '<div class="data-main">';
+          div += "<h1>" + rows[i].nome + "</h1>";
+          div += "<h5>" + rows[i].desc + "</h5>";
+          div += "</div>";
+          div += "</div>";
+        }
+
+        rot.innerHTML = div;
+      },
+      null
+    );
+  });
+}

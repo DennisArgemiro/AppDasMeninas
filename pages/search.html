@@ -1,26 +1,37 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LembreME - App muit foda</title>
-    <link rel="stylesheet" href="/styles/search.css">
-</head>
-<body>
-    <header class="header">
-        <a href="/index.html"><img src="/assets/arrow_left.png" alt=""></a>
-        <input type="text" placeholder="Pesquisar" class="search-bar">
-        <button type="submit"><img src="/assets/search-icon.png"></button>
-    </header>
-    
-    <main>
-        <section class="results">
-            <div class="item-results">
-                <p>Não foi encontrado um remédio com este nome. Por favor, tente de novo mais tarde</p>
-            </div>
-        </section>
-    </main>
+    <link rel="stylesheet" href="/styles/search.css" />
+    <script type="module" src="/scripts/search.js"></script>
+  </head>
+  <body>
 
-</body>
+    <script type="module">
+        import { showMedicines } from "/scripts/database.js";
+        window.onload = showMedicines();
+      </script>
+
+    <header class="header">
+      <a href="/index.html"><img src="/assets/arrow_left.png" alt="" /></a>
+      <input type="text" placeholder="Pesquisar" class="search-bar" id="searchBar" onchange=""/>
+      <button id="searchBtn"><img src="/assets/search-icon.png" /></button>
+    </header>
+
+    <main>
+      <section class="results">
+        <div class="item-results">
+          <div class="medicine">
+            <img src="/assets/user_image.png" alt="" />
+            <h1>nome do remedio</h1>
+            <h3>desc do remedio</h3>
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </body>
 </html>

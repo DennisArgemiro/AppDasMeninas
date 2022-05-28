@@ -20,43 +20,54 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-
 }
 
-.search-bar{
-    text-align: center;
-    color: #ffffff;
-    font-size: 19px;
+.search-bar {
+  text-align: center;
+  color: #ffffff;
+  font-size: 19px;
 
-    background-color: #0487ff;
+  background-color: #0487ff;
 
-    border: none;
-    border-bottom: solid #ffffff;
-    outline: none;
+  border: none;
+  border-bottom: solid #ffffff;
+  outline: none;
 
-    width: 270px;
-    height: 60px;
+  width: 270px;
+  height: 60px;
 }
-.search-bar::placeholder{
-    color: #ffffff;
-    opacity: 60%;
-    font-size: 19px;
+.search-bar::placeholder {
+  color: #ffffff;
+  opacity: 60%;
+  font-size: 19px;
 }
 
-button{
-    background-color: #0487ff;
-    border: none;
+button {
+  background-color: #0487ff;
+  border: none;
+  cursor: pointer;
 }
 /*#########################################*/
-.results{
-    background-color: #0487ff;
+.results {
+  background-color: #0487ff;
 
-    margin: 30px;
-    min-height: 300px;
+  margin: 30px;
+  min-height: 300px;
 
-    border-radius: 35px;
+  border-radius: 35px;
 }
 
-.item-results{
-    padding: 30px;
+.item-results {
+  padding: 30px;
+}
+.medicine {
+  display: flex;
+  flex-direction: row;
+  border-bottom: #ffffff solid 0.8px;
+  padding: 10px;
+  align-items: center;
+
+}
+.medicine img{
+  margin-right: 10px;
 }

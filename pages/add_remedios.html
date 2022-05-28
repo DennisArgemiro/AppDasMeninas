@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LembreME - App muito Foda</title>
+    <link rel="stylesheet" href="/styles/add_remedios.css">
+    <script type="module" src="/scripts/database.js"></script>
+    <script type="module" src="/scripts/add_remedios.js"></script>
+
+</head>
+<body>
+    <header>
+        <section class="header">
+            <a href="/index.html"><img src="/assets/arrow_left.png"></a>
+            <h1>Adicionar Remedios</h1>
+            <img src="/assets/close.png" alt="">
+        </section>
+    </header>
+
+    <main>
+        <section class="addRemedios">
+            <form>
+                <label for="nomeRemedio">Nome:</label><br>
+                <input type="text" name="nomeRemedio" id="inputNome" placeholder="O nome deste remédio é...." class="input"><br>
+                <label for="descRemedio">Descrição:</label><br>
+                <textarea name="descRemedio" id="inputDesc" cols="30" rows="10" placeholder="Este remédio é para...." class="input"></textarea><br>
+                <button type="submit" class="submitBtn" id="submitBtn">Salvar</button>
+            </form>
+        </section>
+    </main>
+    
+</body>
+</html>

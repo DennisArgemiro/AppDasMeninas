@@ -3,7 +3,7 @@ import { db } from "./database.js";
 var inputSearch = document.querySelector("#searchBar");
 var btn = document.querySelector("#searchBtn");
 
-btn.addEventListener("click", function () {
+inputSearch.addEventListener("change", function () {
   db.transaction(function (tx) {
     tx.executeSql(
       "SELECT * FROM medicines",
@@ -15,16 +15,20 @@ btn.addEventListener("click", function () {
         
 
         for (var i = 0; i < rows.length; i++) {
-          var splited = rows[i].nome.split('');
-          var splitInput = inputSearch.value.split('');
-
+          var cahceRow = rows[i].nome.toLowerCase()
+          var splited = cahceRow.split('');
+          var cahceInput = inputSearch.value.toLowerCase()
+          
           var notequal = false;
-
+          
           for (var j = 0; j < splited.length; j++) {
-            if (splitInput[j] !== splited[j]) {
-              notequal = true;
+            if(inputSearch.value !== ''){
+              var splitInput = cahceInput.split('');
+              if (splitInput[j] !== splited[j]) {
+                notequal = true;
+              }
+              break
             }
-            break
           }
           if (notequal === false) {
             div += "<div class='medicine'>";

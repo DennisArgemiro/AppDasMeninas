@@ -2,7 +2,7 @@
 export var db = openDatabase("dbApp", "1.0", "LocalDB", 4 * 1024 * 1024);
 db.transaction(function (tx) {
   tx.executeSql(
-    "CREATE TABLE medicines (id INTEGER PRIMARY KEY, nome TEXT, desc TEXT)"
+    "CREATE TABLE medicines (id INTEGER PRIMARY KEY, nome TEXT, desc TEXT, hour DATATIME)"
   );
 });
 
@@ -67,13 +67,22 @@ export function showMedicines(){
         var rot = document.querySelector(".item-results");
 
         for (var i = 0; i < rows.length; i++) {
-          div += "<div class='medicine'>";
-          div += '<img src="/assets/user_image.png" />';
+          div += "<button class='medicine' onclick='showId()'>";
+          div += '<img src="/assets/user_image.png"/>';
           div += '<div class="data-main">';
-          div += "<h1>" + rows[i].nome + "</h1>";
+          div += "<h1 id='"+rows[i].nome.trim()+"'>" + rows[i].nome + "</h1>";
           div += "<h5>" + rows[i].desc + "</h5>";
+          div += "";
           div += "</div>";
-          div += "</div>";
+          div += "</button>";
+          div += "<script>";
+          div += " async function showId( ){";
+          div += "window.setTimeOut('(){";
+          div += "const cont = document.querrySelector('#"+rows[i].nome+"')";
+          div += "console.log(cont.id)";
+          div += "}',2000)";
+          div += "</script>";
+          div += "";
         }
 
         rot.innerHTML = div

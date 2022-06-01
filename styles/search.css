@@ -44,7 +44,7 @@ body {
   font-size: 19px;
 }
 
-button {
+#searchBtn {
   background-color: #0487ff;
   border: none;
   cursor: pointer;
@@ -63,6 +63,9 @@ button {
   padding: 30px;
 }
 .medicine {
+  background-color: #0487ff;
+  border: none;
+  width: 100%;
   display: flex;
   flex-direction: row;
   border-bottom: #ffffff solid 0.8px;
@@ -70,6 +73,11 @@ button {
   align-items: center;
   cursor: pointer;
 
+}
+.data-main {
+
+  justify-content: center;
+  text-align: left ;
 }
 .medicine img{
   margin-right: 10px;

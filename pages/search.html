@@ -12,7 +12,9 @@
 
     <script type="module">
         import { showMedicines } from "/scripts/database.js";
+        import { getValueOfMedicines } from "/scripts/search.js";
         window.onload = showMedicines();
+        window.onload = getValueOfMedicines()
       </script>
 
     <header class="header">
@@ -24,20 +26,15 @@
     <main>
       <section class="results">
         <div class="item-results">
-          <div class='medicine'  id='medicine'>
+          <button class='medicine'  id=''>
           <img src="/assets/user_image.png" />
           <div class="data-main">
           <h1>nome</h1>
           <h5>descrição</h5>"
           </div>
-        </div>
+        </button>
       </section>
-      <script>
-        const count  = document.querySelector('.item-results');
-        window.setTimeout(function(){
-          console.log(count.length)
-        },2000)
-      </script>
+    
     </main>
   </body>
 </html>

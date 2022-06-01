@@ -38,19 +38,10 @@ body {
   flex-direction: row;
   width: 100%;
   border-bottom: solid #ffffff;
-  justify-content: space-between;
-}
-.leftside {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-.leftside img {
   padding: 10px;
 }
-.upside h6 {
-  display: flex;
-  flex-direction: column-reverse;
+
+.about{
   padding: 10px;
 }
 /*########################################################*/

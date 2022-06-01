@@ -58,6 +58,7 @@ export function insertMedicines(nomeInput,descInput){
     ]);
   });
 }
+var confirmar = false;
 
 export function showMedicines(){
   db.transaction(function (tx){
@@ -67,24 +68,15 @@ export function showMedicines(){
         var rot = document.querySelector(".item-results");
 
         for (var i = 0; i < rows.length; i++) {
-          div += "<button class='medicine' onclick='showId()'>";
+          div += "<button class='medicine' id='btn"+i+"' value='"+rows[i].nome+"'>";
           div += '<img src="/assets/user_image.png"/>';
           div += '<div class="data-main">';
-          div += "<h1 id='"+rows[i].nome.trim()+"'>" + rows[i].nome + "</h1>";
+          div += "<h1>" + rows[i].nome + "</h1>";
           div += "<h5>" + rows[i].desc + "</h5>";
-          div += "";
           div += "</div>";
           div += "</button>";
-          div += "<script>";
-          div += " async function showId( ){";
-          div += "window.setTimeOut('(){";
-          div += "const cont = document.querrySelector('#"+rows[i].nome+"')";
-          div += "console.log(cont.id)";
-          div += "}',2000)";
-          div += "</script>";
-          div += "";
-        }
 
+        }
         rot.innerHTML = div
     }, null)
   })

@@ -51,8 +51,8 @@ export function getValueOfMedicines() {
       medID[i].addEventListener("click", function () {
         // window.localStorage.setItem("key", "newBtn[0].value");
         // window.location.href = "../pages/description.html";
-    console.log(medID[i].id);
-    // console.log(newBtn[0].value);
+        // console.log(newBtn[0].value);
+        console.log(medID[i].id);
     },2000);
     }
 

@@ -1,4 +1,5 @@
 import { db } from "./database.js";
+import { list } from "./database.js";
 
 var inputSearch = document.querySelector("#searchBar");
 var btn = document.querySelector("#searchBtn");
@@ -12,35 +13,26 @@ inputSearch.addEventListener("change", function () {
         var rows = result.rows;
         var div = "";
         var search = document.querySelector(".item-results");
-        
 
         for (var i = 0; i < rows.length; i++) {
-          var cahceRow = rows[i].nome.toLowerCase()
-          var splited = cahceRow.split('');
-          var cahceInput = inputSearch.value.toLowerCase()
-          
+          var cahceRow = rows[i].nome.toLowerCase();
+          var splited = cahceRow.split("");
+          var cahceInput = inputSearch.value.toLowerCase();
+
           var notequal = false;
-          
+
           for (var j = 0; j < splited.length; j++) {
-            if(inputSearch.value !== ''){
-              var splitInput = cahceInput.split('');
+            if (inputSearch.value !== "") {
+              var splitInput = cahceInput.split("");
               if (splitInput[j] !== splited[j]) {
                 notequal = true;
               }
-              break
+              break;
             }
           }
-          if (notequal === false) {
-            div += "<button class='medicine' id='btn"+i+"' value='"+rows[i].nome+"'>";
-            div += '<img src="/assets/user_image.png"/>';
-            div += '<div class="data-main">';
-            div += "<h1>" + rows[i].nome + "</h1>";
-            div += "<h5>" + rows[i].desc + "</h5>";
-            div += "</div>";
-            div += "</button>";
-            notequal = false;
+          if (!notequal) {
+            div += list[i];
           }
-          
         }
         search.innerHTML = div;
       },
@@ -49,29 +41,29 @@ inputSearch.addEventListener("change", function () {
   });
 });
 
-
-export function getValueOfMedicines(){
-  console.log("started the process")
-  window.setTimeout(async ()=>{
+export function getValueOfMedicines() {
+  console.log("started the process");
+  window.setTimeout(async () => {
+    const medID = document.querySelectorAll(".medicine");
+    console.log(medID.length);
     
-    const medID = await document.querySelectorAll(".medicine") 
-    
-    const listBtn = []
-
-    for(var i = 0; i<medID.length; i++){
-      const newBtn = document.querySelector("#btn"+i+"")
-      listBtn.push(newBtn)
-
-    }
-    for (const key in listBtn) {
-
-      listBtn[key].addEventListener("click", function(){
-        window.localStorage.setItem('key',listBtn[key].value)
-        window.location.href = "../pages/description.html"
-      })
-        
+    for (var i = 0 ; i < medID.length -1; i++) {
+      medID[i].addEventListener("click", function () {
+        // window.localStorage.setItem("key", "newBtn[0].value");
+        // window.location.href = "../pages/description.html";
+    console.log(medID[i].id);
+    // console.log(newBtn[0].value);
+    },2000);
     }
 
-    console.log("finished! total medicines are: "+medID.length)
-  }, 2000)
+    console.log("finished! total medicines are: " + medID.length);
+  }, 2000);
 }
+
+const botao = document.querySelector("#searchBtn");
+
+botao.addEventListener("click", () => {
+    window.setTimeout(() => {
+    getValueOfMedicines();
+  });
+  });

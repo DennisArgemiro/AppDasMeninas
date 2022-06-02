@@ -60,6 +60,8 @@ export function insertMedicines(nomeInput,descInput){
 }
 var confirmar = false;
 
+
+
 export function showMedicines(){
   db.transaction(function (tx){
     tx.executeSql("SELECT * FROM medicines", [], function (tx, result){
@@ -76,8 +78,15 @@ export function showMedicines(){
           div += "</div>";
           div += "</button>";
 
+          list.push(div)
+          div = ""
+        }
+
+        for(var i = 0; i < list.length; i++){
+          div += list[i]
         }
         rot.innerHTML = div
     }, null)
   })
 }
+export var list = [];

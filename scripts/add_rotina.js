@@ -8,7 +8,8 @@ btn.addEventListener("click", function () {
   if (nome.value === "" || desc.value === "") {
     return alert("Escreva o nome da rotina e a descrição para continuarmos");
   }
-
   database.insertRoutine(nome.value, desc.value);
+  window.localStorage.setItem('nomeRot', nome.value)
   window.location.href = "/pages/search.html";
 });
+

@@ -35,12 +35,12 @@ export function getMedicines() {
   db.transaction(function (tx) {
     tx.executeSql(
       "SELECT * FROM medicines",
-      [],(tx, result)=>{
-        returnMedicines(result)
+      [],
+      (tx, result) => {
+        returnMedicines(result);
       },
       null
     );
-    
   });
 }
 export function returnMedicines(result) {
@@ -51,7 +51,6 @@ export function returnMedicines(result) {
     button.className = "medicine";
     button.setAttribute("id", `btn-${i}`);
     button.value = rows[i].nome;
-    
 
     const img = document.createElement("img");
     img.setAttribute("src", "../assets/user_image.png");
@@ -73,9 +72,25 @@ export function returnMedicines(result) {
 
     itens.appendChild(button);
 
-    button.addEventListener('click', ()=>{
-      window.localStorage.setItem('key', button.value)
-      window.location.href = "../pages/description.html"
-    })
+    button.addEventListener("click", () => {
+      window.localStorage.setItem("key", button.value);
+      window.location.href = "../pages/description.html";
+    });
   }
+}
+
+export function createRoutine(routineName, medName) {
+  db.transaction(function (tx) {
+    tx.executeSql(
+      `CREATE TABLE IF NOT EXISTS '${routineName}' (id INTEGER PRIMARY KEY, nome_remedio TEXT, done INTEGER)`
+    );
+  });
+}
+export function setMedOnRotine(nomeRotina, medName) {
+  db.transaction(function (tx) {
+    tx.executeSql(
+      `INSERT INTO ${nomeRotina} (nome_remedio, done) VALUES(?,?)`,
+      [medName, 0]
+    );
+  });
 }

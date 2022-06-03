@@ -1,8 +1,9 @@
-import { db } from "./database.js";
+import { db,createRoutine,setMedOnRotine } from "./database.js";
 
 const nomeRemedio = localStorage.getItem('key')
 
 const nome = document.querySelector("#nomeMed")
+const addBtn = document.querySelector("#addBtn")
 
 nome.innerHTML = nomeRemedio
 db.transaction(function(tx){
@@ -17,7 +18,12 @@ db.transaction(function(tx){
 
         p +="<p>"+bufferMed.desc+"</p>"
         desc.innerHTML = p
-
-        localStorage.clear()    
+  
     })
+})
+
+addBtn.addEventListener('click', function(){
+    createRoutine(localStorage.getItem('nomeRot'))
+    setMedOnRotine(localStorage.getItem('nomeRot'),localStorage.getItem('key'))
+
 })

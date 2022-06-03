@@ -6,7 +6,6 @@ window.setTimeout(() => {
       "SELECT * FROM routines",
       [],
       (tx, result) => {
-        console.log("entrei no db");
         returnRoutines(result);
       },
       null
@@ -15,7 +14,6 @@ window.setTimeout(() => {
 
   function returnRoutines(result) {
     var rows = result.rows;
-    console.log(rows);
     for (var i = 0; i < rows.length; i++) {
       const button = document.createElement("button");
       const lista = document.querySelector(".listas-rotina");

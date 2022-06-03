@@ -21,6 +21,11 @@
     align-items: center;
     justify-content: space-between;
   }
+  #infoBtn{
+      background-color: #0487ff;
+      border: none;
+      cursor: pointer;
+  }
 /* /////////////////////////////////////////////////////////   */
 .container{
     background-color: #0487ff;

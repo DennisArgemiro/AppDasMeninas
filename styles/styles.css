@@ -82,7 +82,7 @@ body{
     margin: 0 auto;
     align-items: center;
     display: flex;
-    justify-content: center;
+    justify-content: center
 }
 
 .add-rotina{
@@ -91,6 +91,7 @@ body{
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    margin: 10px;
 }
 
 .add-rotina img{

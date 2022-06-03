@@ -6,15 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>LembreME - App muit foda</title>
     <link rel="stylesheet" href="../styles/search.css" />
-    <script type="module" src="../scripts/search.js"></script>
+    <script type="module" src="../scripts/database.js"></script>
   </head>
   <body>
 
     <script type="module">
-        import { showMedicines } from "/scripts/database.js";
+        import { getMedicines } from "/scripts/database.js";
         import { getValueOfMedicines } from "/scripts/search.js";
-        window.onload = showMedicines();
         window.onload = getValueOfMedicines()
+        window.onload = getMedicines()
       </script>
 
     <header class="header">
@@ -26,13 +26,13 @@
     <main>
       <section class="results">
         <div class="item-results">
-          <button class='medicine'  id=''>
-          <img src="/assets/user_image.png" />
+          <!-- <button class='medicine'  id=''>
+          <img src="../assets/user_image.png" />
           <div class="data-main">
           <h1>nome</h1>
-          <h5>descrição</h5>"
+          <h5>descrição</h5>
           </div>
-        </button>
+        </button> -->
       </section>
     
     </main>

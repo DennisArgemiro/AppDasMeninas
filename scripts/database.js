@@ -12,7 +12,6 @@ db.transaction(function (tx) {
   );
 });
 
-
 export function insertRoutine(nomeInput, descInput) {
   db.transaction(function (tx) {
     tx.executeSql("INSERT INTO routines (nome, desc) VALUES(?,?)", [
@@ -22,35 +21,7 @@ export function insertRoutine(nomeInput, descInput) {
   });
 }
 
-export function showRoutines() {
-  db.transaction(function (tx) {
-    tx.executeSql(
-      "SELECT * FROM routines",
-      [],
-      function (tx, resultado) {
-        var rows = resultado.rows;
-        var div = "";
-        var rot = document.querySelector(".listas-rotina");
-
-        for (var i = 0; i < rows.length; i++) {
-          div += '<div>';
-          div += "<div class='remedio-specs'>";
-          div += '<img src="/assets/user_image.png" />';
-          div += '<div class="data-main">';
-          div += "<h1>" + rows[i].nome + "</h1>";
-          div += "<h5>" + rows[i].desc + "</h5>";
-          div += "</div>";
-          div += "</div>";
-        }
-
-        rot.innerHTML = div;
-      },
-      null
-    );
-  });
-}
-
-export function insertMedicines(nomeInput,descInput){
+export function insertMedicines(nomeInput, descInput) {
   db.transaction(function (tx) {
     tx.executeSql("INSERT INTO medicines (nome, desc) VALUES(?,?)", [
       nomeInput,
@@ -60,33 +31,51 @@ export function insertMedicines(nomeInput,descInput){
 }
 var confirmar = false;
 
-
-
-export function showMedicines(){
-  db.transaction(function (tx){
-    tx.executeSql("SELECT * FROM medicines", [], function (tx, result){
-        var rows = result.rows;
-        var div = "";
-        var rot = document.querySelector(".item-results");
-
-        for (var i = 0; i < rows.length; i++) {
-          div += "<button class='medicine' id='btn"+i+"' value='"+rows[i].nome+"'>";
-          div += '<img src="/assets/user_image.png"/>';
-          div += '<div class="data-main">';
-          div += "<h1>" + rows[i].nome + "</h1>";
-          div += "<h5>" + rows[i].desc + "</h5>";
-          div += "</div>";
-          div += "</button>";
-
-          list.push(div)
-          div = ""
-        }
-
-        for(var i = 0; i < list.length; i++){
-          div += list[i]
-        }
-        rot.innerHTML = div
-    }, null)
-  })
+export function getMedicines(filter) {
+  db.transaction(function (tx) {
+    tx.executeSql(
+      "SELECT * FROM medicines",
+      [],(tx, result)=>{
+        returnMedicines(result)
+      },
+      null
+    );
+    
+  });
 }
-export var list = [];
+export function returnMedicines(result) {
+  var rows = result.rows;
+  const itens = document.querySelector(".item-results");
+  for (var i = 0; i < rows.length; i++) {
+    const button = document.createElement("button");
+    button.className = "medicine";
+    button.setAttribute("id", `btn-${i}`);
+    button.value = rows[i].nome;
+    
+
+    const img = document.createElement("img");
+    img.setAttribute("src", "../assets/user_image.png");
+
+    const div = document.createElement("div");
+    div.className = "data-main";
+
+    const h1 = document.createElement("h1");
+    h1.textContent = rows[i].nome;
+
+    const h5 = document.createElement("h5");
+    h5.textContent = rows[i].desc;
+
+    /////////////////////////
+    div.appendChild(h1);
+    div.appendChild(h5);
+    button.appendChild(img);
+    button.appendChild(div);
+
+    itens.appendChild(button);
+
+    button.addEventListener('click', ()=>{
+      window.localStorage.setItem('key', button.value)
+      window.location.href = "../pages/description.html"
+    })
+  }
+}

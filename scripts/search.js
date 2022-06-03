@@ -1,41 +1,29 @@
-import { db } from "./database.js";
-import { list } from "./database.js";
+import { db, returnMedicines } from "../scripts/database.js";
 
 var inputSearch = document.querySelector("#searchBar");
 var btn = document.querySelector("#searchBtn");
 
-inputSearch.addEventListener("change", function () {
+btn.addEventListener("click", function () {
+  console.log(inputSearch.value)
+  var cacheInput = inputSearch.value;
   db.transaction(function (tx) {
     tx.executeSql(
-      "SELECT * FROM medicines",
+      `SELECT * FROM medicines WHERE nome LIKE '%${cacheInput}%'`,
       [],
-      function (tx, result) {
-        var rows = result.rows;
-        var div = "";
-        var search = document.querySelector(".item-results");
-
-        for (var i = 0; i < rows.length; i++) {
-          var cahceRow = rows[i].nome.toLowerCase();
-          var splited = cahceRow.split("");
-          var cahceInput = inputSearch.value.toLowerCase();
-
-          var notequal = false;
-
-          for (var j = 0; j < splited.length; j++) {
-            if (inputSearch.value !== "") {
-              var splitInput = cahceInput.split("");
-              if (splitInput[j] !== splited[j]) {
-                notequal = true;
-              }
-              break;
+      (tx, result) => {
+       cacheInput = inputSearch.value.toLowerCase().toLowerCase().split("");
+       const medicines = result.rows
+        window.setTimeout(() => {
+          var test = false;
+            if (test === false) {
+              const results = document.querySelector(".item-results");
+              results.innerHTML = "";
+              returnMedicines(result)
             }
-          }
-          if (!notequal) {
-            div += list[i];
-          }
-        }
-        search.innerHTML = div;
+          
+        }, 1000);
       },
+
       null
     );
   });
@@ -45,15 +33,17 @@ export function getValueOfMedicines() {
   console.log("started the process");
   window.setTimeout(async () => {
     const medID = document.querySelectorAll(".medicine");
-    console.log(medID.length);
-    
-    for (var i = 0 ; i < medID.length -1; i++) {
-      medID[i].addEventListener("click", function () {
-        // window.localStorage.setItem("key", "newBtn[0].value");
-        // window.location.href = "../pages/description.html";
-        // console.log(newBtn[0].value);
-        console.log(medID[i].id);
-    },2000);
+    for (var i = 0; i < medID.length - 1; i++) {
+      medID[i].addEventListener(
+        "click",
+        function () {
+          // window.localStorage.setItem("key", "newBtn[0].value");
+          // window.location.href = "../pages/description.html";
+          // console.log(newBtn[0].value);
+          // console.log(medID[i].id);
+        },
+        2000
+      );
     }
 
     console.log("finished! total medicines are: " + medID.length);
@@ -63,7 +53,7 @@ export function getValueOfMedicines() {
 const botao = document.querySelector("#searchBtn");
 
 botao.addEventListener("click", () => {
-    window.setTimeout(() => {
+  window.setTimeout(() => {
     getValueOfMedicines();
   });
-  });
+});

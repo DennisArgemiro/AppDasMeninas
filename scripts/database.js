@@ -31,7 +31,7 @@ export function insertMedicines(nomeInput, descInput) {
 }
 var confirmar = false;
 
-export function getMedicines(filter) {
+export function getMedicines() {
   db.transaction(function (tx) {
     tx.executeSql(
       "SELECT * FROM medicines",

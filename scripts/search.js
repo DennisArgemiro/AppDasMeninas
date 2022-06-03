@@ -4,15 +4,14 @@ var inputSearch = document.querySelector("#searchBar");
 var btn = document.querySelector("#searchBtn");
 
 btn.addEventListener("click", function () {
-  console.log(inputSearch.value)
+  console.log("clicado")
   var cacheInput = inputSearch.value;
   db.transaction(function (tx) {
     tx.executeSql(
       `SELECT * FROM medicines WHERE nome LIKE '%${cacheInput}%'`,
       [],
       (tx, result) => {
-       cacheInput = inputSearch.value.toLowerCase().toLowerCase().split("");
-       const medicines = result.rows
+       cacheInput = inputSearch.value.toLowerCase().split("");
         window.setTimeout(() => {
           var test = false;
             if (test === false) {

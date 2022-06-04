@@ -10,6 +10,6 @@ btn.addEventListener("click", function () {
   }
   database.insertRoutine(nome.value, desc.value);
   window.localStorage.setItem('nomeRot', nome.value)
-  window.location.href = "/pages/search.html";
+  window.location.href = "../pages/search.html";
 });
 

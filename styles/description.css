@@ -21,6 +21,9 @@ body {
   align-items: center;
   justify-content: space-between;
 }
+#addBtn{
+  background-color: #0487ff;
+}
 
 /*#######################################################*/
 

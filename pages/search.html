@@ -11,16 +11,16 @@
   <body>
 
     <script type="module">
-        import { getMedicines } from "/scripts/database.js";
-        import { getValueOfMedicines } from "/scripts/search.js";
+        import { getMedicines } from "../scripts/database.js";
+        import { getValueOfMedicines } from "../scripts/search.js";
         window.onload = getValueOfMedicines()
         window.onload = getMedicines()
       </script>
 
     <header class="header">
-      <a href="/index.html"><img src="/assets/arrow_left.png" alt="" /></a>
+      <a href="../index.html"><img src="../assets/arrow_left.png" alt="" /></a>
       <input type="text" placeholder="Pesquisar" class="search-bar" id="searchBar" onchange=""/>
-      <button id="searchBtn"><img src="/assets/search-icon.png" /></button>
+      <button id="searchBtn"><img src="../assets/search-icon.png" /></button>
     </header>
 
     <main>

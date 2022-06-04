@@ -1,5 +1,7 @@
 import { db } from "../scripts/database.js";
 
+window.localStorage.clear
+
 window.setTimeout(() => {
   db.transaction(function (tx) {
     tx.executeSql(

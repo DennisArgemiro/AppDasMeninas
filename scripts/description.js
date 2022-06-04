@@ -25,6 +25,7 @@ addBtn.addEventListener('click', function(){
     window.location.href = '../index.html'
 
 })
+
 const nomeRotina = document.querySelector("#nameRot");
 
 nomeRotina.textContent = localStorage.getItem('RotKey')

@@ -79,17 +79,13 @@ export function returnMedicines(result) {
   }
 }
 
-export function createRoutine(routineName, medName) {
+export function createRoutine(routineName,medName) {
   db.transaction(function (tx) {
     tx.executeSql(
       `CREATE TABLE IF NOT EXISTS '${routineName}' (id INTEGER PRIMARY KEY, nome_remedio TEXT, done INTEGER)`
     );
-  });
-}
-export function setMedOnRotine(nomeRotina, medName) {
-  db.transaction(function (tx) {
     tx.executeSql(
-      `INSERT INTO ${nomeRotina} (nome_remedio, done) VALUES(?,?)`,
+      `INSERT INTO '${routineName}' (nome_remedio, done) VALUES(?,?)`,
       [medName, 0]
     );
   });

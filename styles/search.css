@@ -72,6 +72,8 @@ body {
   padding: 10px;
   align-items: center;
   cursor: pointer;
+  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 15px;
 
 }
 .data-main {

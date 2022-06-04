@@ -19,7 +19,7 @@ btn.addEventListener("click", function () {
               results.innerHTML = "";
               returnMedicines(result)
             }
-          
+          /////////////////////////////
         }, 1000);
       },
 

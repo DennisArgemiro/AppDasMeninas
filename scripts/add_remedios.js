@@ -1,6 +1,7 @@
 import * as db from "./database.js"
 
-const nome = document.querySelector("#inputNome");
+const nomeVenda = document.querySelector("#inputNomeVenda");
+const nomeOriginal = document.querySelector("#inputNomeOriginal");
 const desc = document.querySelector("#inputDesc");
 const btn = document.querySelector("#submitBtn");
 
@@ -10,10 +11,11 @@ btn.addEventListener("click", function(e){
     var confirmar = confirm("Todos os Valores estão corretos?")
 
     if(confirmar){
-        db.insertMedicines(nome.value, desc.value)
+        db.insertMedicines(nomeVenda.value, nomeOriginal.value, desc.value)
     }
 
-    nome.value = ""
+    nomeVenda.value = ""
+    nomeOriginal.value = ""
     desc.value = ""
 
 })

@@ -8,7 +8,7 @@ btn.addEventListener("click", function () {
   var cacheInput = inputSearch.value;
   db.transaction(function (tx) {
     tx.executeSql(
-      `SELECT * FROM medicines WHERE nome LIKE '%${cacheInput}%'`,
+      `SELECT * FROM medicines WHERE nomeVenda LIKE '%${cacheInput}%'`,
       [],
       (tx, result) => {
        cacheInput = inputSearch.value.toLowerCase().split("");

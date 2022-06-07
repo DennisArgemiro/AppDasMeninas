@@ -2,7 +2,7 @@
 export var db = openDatabase("dbApp", "1.0", "LocalDB", 4 * 1024 * 1024);
 db.transaction(function (tx) {
   tx.executeSql(
-    "CREATE TABLE medicines (id INTEGER PRIMARY KEY, nome TEXT, desc TEXT, hour DATATIME)"
+    "CREATE TABLE medicines (id INTEGER PRIMARY KEY, nomeVenda TEXT,nomeOriginal TEXT, desc TEXT, hour DATATIME)"
   );
 });
 
@@ -21,10 +21,11 @@ export function insertRoutine(nomeInput, descInput) {
   });
 }
 
-export function insertMedicines(nomeInput, descInput) {
+export function insertMedicines(nomeVendaInput, nomeOriginalInput,  descInput) {
   db.transaction(function (tx) {
-    tx.executeSql("INSERT INTO medicines (nome, desc) VALUES(?,?)", [
-      nomeInput,
+    tx.executeSql(`INSERT INTO medicines (nomeVenda, nomeOriginal, desc) VALUES(?,?,?)`, [
+      nomeVendaInput,
+      nomeOriginalInput,
       descInput,
     ]);
   });
@@ -38,19 +39,21 @@ export function getMedicines() {
       [],
       (tx, result) => {
         returnMedicines(result);
+        console.log(result)
       },
       null
     );
   });
 }
 export function returnMedicines(result) {
+
   var rows = result.rows;
   const itens = document.querySelector(".item-results");
   for (var i = 0; i < rows.length; i++) {
     const button = document.createElement("button");
     button.className = "medicine";
     button.setAttribute("id", `btn-${i}`);
-    button.value = rows[i].nome;
+    button.value = rows[i].nomeVenda;
 
     const img = document.createElement("img");
     img.setAttribute("src", "../assets/user_image.png");
@@ -59,10 +62,10 @@ export function returnMedicines(result) {
     div.className = "data-main";
 
     const h1 = document.createElement("h1");
-    h1.textContent = rows[i].nome;
+    h1.textContent = rows[i].nomeVenda;
 
     const h5 = document.createElement("h5");
-    h5.textContent = rows[i].desc;
+    h5.textContent = rows[i].nomeOriginal;
 
     /////////////////////////
     div.appendChild(h1);

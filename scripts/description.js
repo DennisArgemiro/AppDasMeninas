@@ -9,7 +9,7 @@ const addBtn = document.querySelector("#addBtn");
 nomeHeader.textContent = nomeRemedio
 nomeDesc.textContent = nomeRemedio
 db.transaction(function(tx){
-    tx.executeSql(`SELECT * FROM medicines WHERE nome = "${nomeRemedio}"` ,[], function(tx, res){
+    tx.executeSql(`SELECT * FROM medicines WHERE nomeVenda = "${nomeRemedio}"` ,[], function(tx, res){
         const bufferMed = res.rows[0]
         const desc = document.querySelector("#description")
 

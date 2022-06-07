@@ -22,7 +22,13 @@ db.transaction(function(tx){
 
 addBtn.addEventListener('click', function(){
     createRoutine(localStorage.getItem('nomeRot'),localStorage.getItem('key'))
-    window.location.href = '../index.html'
+    var conf = confirm('Adicionar mais um remédios?')
+    if(!conf){
+        window.location.href = '../index.html'
+    }else{
+        window.location.href = '../pages/search.html'
+        
+    }
 
 })
 

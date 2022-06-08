@@ -55,14 +55,13 @@ export function insertRoutine(nomeInput, descInput) {
 //     ]);
 //   });
 // }
-var confirmar = false;
+// var confirmar = false;
 
-export async function returnMedicines() {
+export async function returnMedicines(result) {
 
     const { data, error } = await supabase.from("lembreme").select();
     var rows = data;
-;
-  console.log(rows)
+
   const itens = document.querySelector(".item-results");
   for (var i = 0; i < rows.length; i++) {
     const button = document.createElement("button");

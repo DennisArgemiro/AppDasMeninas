@@ -1,24 +1,27 @@
-import { db,createRoutine} from "./database.js";
+import { db,createRoutine, supabase} from "./database.js";
+
+
 
 const nomeRemedio = localStorage.getItem('key')
 
 const nomeHeader = document.querySelector("#nomeMed");
 const nomeDesc = document.querySelector(".nomeMed");
 const addBtn = document.querySelector("#addBtn");
+const description = document.querySelector("#description")
+var p = ''
 
 nomeHeader.textContent = nomeRemedio
 nomeDesc.textContent = nomeRemedio
-db.transaction(function(tx){
-    tx.executeSql(`SELECT * FROM medicines WHERE nomeVenda = "${nomeRemedio}"` ,[], function(tx, res){
-        const bufferMed = res.rows[0]
-        const desc = document.querySelector("#description")
 
-        var p = ""
-        p +="<p>"+bufferMed.desc+"</p>"
-        desc.innerHTML = p
-  
-    })
-})
+const {data,error} = await supabase.from('lembreme').select(
+    'desc'
+    ).eq('nomeVenda',nomeRemedio)
+    
+    
+    p += "<p>"+data[0].desc+"</p>"
+    description.innerHTML = p
+    
+
 
 addBtn.addEventListener('click', function(){
     createRoutine(localStorage.getItem('nomeRot'),localStorage.getItem('key'))

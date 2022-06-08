@@ -1,7 +1,7 @@
 //banco de dados
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-const supabase = createClient(
+export const supabase = createClient(
   "https://ziaodzioajpxysrjbhzs.supabase.co",
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppYW9kemlvYWpweHlzcmpiaHpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTM4MjgzNjAsImV4cCI6MTk2OTQwNDM2MH0.rWHdfQ9sg80dvoszqmbzDQbpuBxq3LgEMu9Zx0Wzq5Q"
 );

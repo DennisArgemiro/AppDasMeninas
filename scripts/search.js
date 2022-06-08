@@ -28,26 +28,6 @@ btn.addEventListener("click", function () {
   });
 });
 
-export function getValueOfMedicines() {
-  console.log("started the process");
-  window.setTimeout(async () => {
-    const medID = document.querySelectorAll(".medicine");
-    for (var i = 0; i < medID.length - 1; i++) {
-      medID[i].addEventListener(
-        "click",
-        function () {
-          // window.localStorage.setItem("key", "newBtn[0].value");
-          // window.location.href = "../pages/description.html";
-          // console.log(newBtn[0].value);
-          // console.log(medID[i].id);
-        },
-        2000
-      );
-    }
-
-    console.log("finished! total medicines are: " + medID.length);
-  }, 2000);
-}
 
 const botao = document.querySelector("#searchBtn");
 

@@ -9,14 +9,10 @@
     <script type="module" src="../scripts/database.js"></script>
   </head>
   <body>
-
     <script type="module">
-        import { getMedicines } from "../scripts/database.js";
-        import { getValueOfMedicines } from "../scripts/search.js";
-        window.onload = getValueOfMedicines()
-        window.onload = getMedicines()
-      </script>
-
+      import {returnMedicines} from "../scripts/database.js"
+      returnMedicines();
+    </script>
     <header class="header">
       <a href="../index.html"><img src="../assets/arrow_left.png" alt="" /></a>
       <input type="text" placeholder="Pesquisar" class="search-bar" id="searchBar" onchange=""/>

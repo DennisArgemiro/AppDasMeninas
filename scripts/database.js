@@ -1,4 +1,29 @@
 //banco de dados
+import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
+
+const supabase = createClient(
+  "https://ziaodzioajpxysrjbhzs.supabase.co",
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppYW9kemlvYWpweHlzcmpiaHpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTM4MjgzNjAsImV4cCI6MTk2OTQwNDM2MH0.rWHdfQ9sg80dvoszqmbzDQbpuBxq3LgEMu9Zx0Wzq5Q"
+);
+
+async () => {
+  const { user, error } = await supabase.from("lembreme").auth.signin({
+    email: "dennisarg2011@gmail.com",
+    password: "livec4f3",
+  });
+};
+export async function insertMedicines(inputVenda, inputOriginal, inputDesc) {
+  const { data, error } = await supabase.from("lembreme").insert([
+    {
+      nomeVenda: inputVenda,
+      nomeOriginal: inputOriginal,
+      desc: inputDesc,
+    },
+  ]);
+}
+
+///////////////////////////////////////////////////////////////////////////////
+
 export var db = openDatabase("dbApp", "1.0", "LocalDB", 4 * 1024 * 1024);
 db.transaction(function (tx) {
   tx.executeSql(
@@ -21,33 +46,23 @@ export function insertRoutine(nomeInput, descInput) {
   });
 }
 
-export function insertMedicines(nomeVendaInput, nomeOriginalInput,  descInput) {
-  db.transaction(function (tx) {
-    tx.executeSql(`INSERT INTO medicines (nomeVenda, nomeOriginal, desc) VALUES(?,?,?)`, [
-      nomeVendaInput,
-      nomeOriginalInput,
-      descInput,
-    ]);
-  });
-}
+// export function insertMedicines(nomeVendaInput, nomeOriginalInput,  descInput) {
+//   db.transaction(function (tx) {
+//     tx.executeSql(`INSERT INTO medicines (nomeVenda, nomeOriginal, desc) VALUES(?,?,?)`, [
+//       nomeVendaInput,
+//       nomeOriginalInput,
+//       descInput,
+//     ]);
+//   });
+// }
 var confirmar = false;
 
-export function getMedicines() {
-  db.transaction(function (tx) {
-    tx.executeSql(
-      "SELECT * FROM medicines",
-      [],
-      (tx, result) => {
-        returnMedicines(result);
-        console.log(result)
-      },
-      null
-    );
-  });
-}
-export function returnMedicines(result) {
+export async function returnMedicines() {
 
-  var rows = result.rows;
+    const { data, error } = await supabase.from("lembreme").select();
+    var rows = data;
+;
+  console.log(rows)
   const itens = document.querySelector(".item-results");
   for (var i = 0; i < rows.length; i++) {
     const button = document.createElement("button");
@@ -82,7 +97,7 @@ export function returnMedicines(result) {
   }
 }
 
-export function createRoutine(routineName,medName) {
+export function createRoutine(routineName, medName) {
   db.transaction(function (tx) {
     tx.executeSql(
       `CREATE TABLE IF NOT EXISTS '${routineName}' (id INTEGER PRIMARY KEY, nome_remedio TEXT, done INTEGER)`

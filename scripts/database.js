@@ -55,7 +55,6 @@ export function insertRoutine(nomeInput, descInput) {
 //     ]);
 //   });
 // }
-// var confirmar = false;
 
 export async function returnMedicines(result) {
 

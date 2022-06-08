@@ -27,7 +27,7 @@ btn.addEventListener("click", async function () {
         break;
       }
     }
-    if(teste === false){
+    if(teste === false || inputSearch.value === ""){
       console.log("entrei no if")
       const button = document.createElement("button");
       button.className = "medicine";

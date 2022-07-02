@@ -1,15 +1,21 @@
 //banco de dados
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
+const email = "dennisarg2011@gmail.com";
+const password  = "livec4f3"
+
+const urlKey = "https://ziaodzioajpxysrjbhzs.supabase.co"
+const apiKey =  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppYW9kemlvYWpweHlzcmpiaHpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTM4MjgzNjAsImV4cCI6MTk2OTQwNDM2MH0.rWHdfQ9sg80dvoszqmbzDQbpuBxq3LgEMu9Zx0Wzq5Q"
+
 export const supabase = createClient(
-  "https://ziaodzioajpxysrjbhzs.supabase.co",
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InppYW9kemlvYWpweHlzcmpiaHpzIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NTM4MjgzNjAsImV4cCI6MTk2OTQwNDM2MH0.rWHdfQ9sg80dvoszqmbzDQbpuBxq3LgEMu9Zx0Wzq5Q"
+  urlKey,
+ 
 );
 
 async () => {
   const { user, error } = await supabase.from("lembreme").auth.signin({
-    email: "dennisarg2011@gmail.com",
-    password: "livec4f3",
+    email: email,
+    password: password,
   });
 };
 export async function insertMedicines(inputVenda, inputOriginal, inputDesc) {

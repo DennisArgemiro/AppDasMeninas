@@ -1,11 +1,11 @@
 //banco de dados
 import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js/+esm";
 
-const email = "";
-const password  = ""
+const email = EMAIL_AUTENTICADO;
+const password  = SENHA_EMAIL_AUTENTICADO
 
-const urlKey = ""
-const apiKey =  ""
+const urlKey = URL_KEY
+const apiKey =  API_KEY
 
 export const supabase = createClient(
   urlKey,
